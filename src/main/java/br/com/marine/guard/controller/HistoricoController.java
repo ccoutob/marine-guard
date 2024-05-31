@@ -3,14 +3,9 @@ package br.com.marine.guard.controller;
 import br.com.marine.guard.dto.historico.CadastroHistorico;
 import br.com.marine.guard.dto.historico.DetalhesHistorico;
 import br.com.marine.guard.dto.historico.DetalhesHistoricoPerfil;
-import br.com.marine.guard.dto.residuo.CadastroResiduo;
-import br.com.marine.guard.dto.residuo.DetalhesResiduo;
-import br.com.marine.guard.dto.residuo.DetalhesResiduoPerfil;
 import br.com.marine.guard.model.Historico;
-import br.com.marine.guard.model.Residuo.Residuo;
 import br.com.marine.guard.repository.HistoricoRepository;
 import br.com.marine.guard.repository.PerfilRepository;
-import br.com.marine.guard.repository.ResiduoRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -44,6 +39,18 @@ public class HistoricoController {
         var residuo = historicoRepository.getReferenceById(id);
         return ResponseEntity.ok(new DetalhesHistorico(residuo));
     }
+
+    /*
+    @PostMapping
+    @Transactional
+    public ResponseEntity<DetalhesHistorico> cadastrar(@RequestBody CadastroHistorico historicoPost,
+                                                     UriComponentsBuilder uri){
+        var historico = new Historico(historicoPost);
+        historicoRepository.save(historico);
+        var url = uri.path("/historico/{id}").buildAndExpand(historico.getCodigo()).toUri();
+        return ResponseEntity.created(url).body(new DetalhesHistorico(historico));
+    }
+    */
 
     //Post da tabela Historico para Perfil
     @PostMapping("{id}/historicosPerfil")

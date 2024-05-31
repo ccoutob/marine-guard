@@ -3,6 +3,7 @@ package br.com.marine.guard.model;
 import br.com.marine.guard.dto.perfil.CadastroPerfil;
 import br.com.marine.guard.dto.usuario.CadastroUsuario;
 import br.com.marine.guard.model.Residuo.Residuo;
+import br.com.marine.guard.model.brinde.Brinde;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -39,6 +40,9 @@ public class Perfil {
 
     @OneToMany(mappedBy = "perfil")
     private List<Historico> historicosPerfil;
+
+    @OneToMany(mappedBy = "perfil")
+    private List<Brinde> brindes;
 
     public Perfil(CadastroUsuario perfil){
         pontos = perfil.pontos();

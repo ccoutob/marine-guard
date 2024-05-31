@@ -1,7 +1,7 @@
 package br.com.marine.guard.model;
 
 import br.com.marine.guard.dto.historico.CadastroHistorico;
-import br.com.marine.guard.dto.residuo.CadastroResiduo;
+import br.com.marine.guard.model.brinde.Brinde;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import java.time.LocalDate;
+import java.util.List;
 
 @Getter
 @Setter
@@ -36,11 +36,14 @@ public class Historico {
     @JoinColumn(name = "historicosPerfil")
     private Perfil perfil;
 
+    @OneToMany(mappedBy = "historico")
+    private List<PontoColeta> pontoColeta;
+
     public Historico(CadastroHistorico historico){
         disponivel = historico.disponivel();
         quantidadeTrocas = historico.quantidadeTrocas();
     }
-    //DTO de detalhesResiduoPerfil
+    //DTO de detalhesHistoricoPerfil
     public Historico(CadastroHistorico historico, Perfil perfil){
         disponivel = historico.disponivel();
         quantidadeTrocas = historico.quantidadeTrocas();
