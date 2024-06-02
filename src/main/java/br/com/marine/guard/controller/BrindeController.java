@@ -2,12 +2,9 @@ package br.com.marine.guard.controller;
 
 import br.com.marine.guard.dto.brinde.CadastroBrinde;
 import br.com.marine.guard.dto.brinde.DetalhesBrinde;
-import br.com.marine.guard.dto.historico.CadastroHistorico;
-import br.com.marine.guard.dto.historico.DetalhesHistoricoPerfil;
-import br.com.marine.guard.model.Historico;
 import br.com.marine.guard.model.brinde.Brinde;
 import br.com.marine.guard.repository.BrindeRepository;
-import br.com.marine.guard.repository.PerfilRepository;
+import br.com.marine.guard.repository.UsuarioRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -27,7 +24,7 @@ public class BrindeController {
     private BrindeRepository brindeRepository;
 
     @Autowired
-    private PerfilRepository perfilRepository;
+    private UsuarioRepository usuarioRepository;
 
     @GetMapping //Listar todos os brindes
     public ResponseEntity<List<DetalhesBrinde>> listar(Pageable pageable){
@@ -42,23 +39,23 @@ public class BrindeController {
         return ResponseEntity.ok(new DetalhesBrinde(brinde));
     }
 
-    //Cadastrar Brindes a um perfil
-    @PostMapping("{id}/brindesPerfil")
+    //Cadastrar Brindes a um Usuario
+    @PostMapping("{id}/brindesUsuario")
     @Transactional
     public ResponseEntity<DetalhesBrinde> postHistoricoPerfil(@PathVariable("id") Long id,
                                                                        @RequestBody @Valid CadastroBrinde dto,
                                                                        UriComponentsBuilder uriBuilder){
-        var perfil = perfilRepository.getReferenceById(id);
-        var brinde = new Brinde(dto, perfil);
+        var usuario = usuarioRepository.getReferenceById(id);
+        var brinde = new Brinde(dto, usuario);
         brindeRepository.save(brinde);
-        var uri = uriBuilder.path("brindesPerfil/{id}").buildAndExpand(brinde.getCodigo()).toUri();
+        var uri = uriBuilder.path("brindesUsuario/{id}").buildAndExpand(brinde.getCodigo()).toUri();
         return ResponseEntity.created(uri).body(new DetalhesBrinde(brinde));
     }
 
     @PutMapping("{id}") //Atualizar um brinde
     @Transactional
     public ResponseEntity<DetalhesBrinde> atualizar(@PathVariable("id") Long id,
-                                                    @RequestBody CadastroBrinde brindePut){
+                                                    @RequestBody @Valid CadastroBrinde brindePut){
         var brinde = brindeRepository.getReferenceById(id);
         brinde.atualizarDados(brindePut);
         return ResponseEntity.ok(new DetalhesBrinde(brinde));

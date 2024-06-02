@@ -1,7 +1,6 @@
 package br.com.marine.guard.dto.coleta;
 
 import br.com.marine.guard.dto.historico.DetalhesHistorico;
-import br.com.marine.guard.dto.perfil.DetalhesPerfil;
 import br.com.marine.guard.model.PontoColeta;
 
 import java.time.LocalTime;

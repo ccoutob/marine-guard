@@ -2,10 +2,9 @@ package br.com.marine.guard.controller;
 
 import br.com.marine.guard.dto.historico.CadastroHistorico;
 import br.com.marine.guard.dto.historico.DetalhesHistorico;
-import br.com.marine.guard.dto.historico.DetalhesHistoricoPerfil;
 import br.com.marine.guard.model.Historico;
 import br.com.marine.guard.repository.HistoricoRepository;
-import br.com.marine.guard.repository.PerfilRepository;
+import br.com.marine.guard.repository.UsuarioRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -25,7 +24,7 @@ public class HistoricoController {
     private HistoricoRepository historicoRepository;
 
     @Autowired
-    private PerfilRepository perfilRepository;
+    private UsuarioRepository usuarioRepository;
 
     @GetMapping
     public ResponseEntity<List<DetalhesHistorico>> listar(Pageable pageable){
@@ -40,35 +39,23 @@ public class HistoricoController {
         return ResponseEntity.ok(new DetalhesHistorico(residuo));
     }
 
-    /*
-    @PostMapping
+    //Post da tabela Historico para Usuario
+    @PostMapping("{id}/historicosUsuario")
     @Transactional
-    public ResponseEntity<DetalhesHistorico> cadastrar(@RequestBody CadastroHistorico historicoPost,
-                                                     UriComponentsBuilder uri){
-        var historico = new Historico(historicoPost);
-        historicoRepository.save(historico);
-        var url = uri.path("/historico/{id}").buildAndExpand(historico.getCodigo()).toUri();
-        return ResponseEntity.created(url).body(new DetalhesHistorico(historico));
-    }
-    */
-
-    //Post da tabela Historico para Perfil
-    @PostMapping("{id}/historicosPerfil")
-    @Transactional
-    public ResponseEntity<DetalhesHistoricoPerfil> postHistoricoPerfil(@PathVariable("id") Long id,
+    public ResponseEntity<DetalhesHistorico> postHistoricoPerfil(@PathVariable("id") Long id,
                                                                             @RequestBody @Valid CadastroHistorico dto,
                                                                             UriComponentsBuilder uriBuilder){
-        var perfil = perfilRepository.getReferenceById(id);
-        var historico = new Historico(dto, perfil);
+        var usuario = usuarioRepository.getReferenceById(id);
+        var historico = new Historico(dto, usuario);
         historicoRepository.save(historico);
-        var uri = uriBuilder.path("historicoPerfil/{id}").buildAndExpand(historico.getCodigo()).toUri();
-        return ResponseEntity.created(uri).body(new DetalhesHistoricoPerfil(historico));
+        var uri = uriBuilder.path("historicosUsuario/{id}").buildAndExpand(historico.getCodigo()).toUri();
+        return ResponseEntity.created(uri).body(new DetalhesHistorico(historico));
     }
 
     @PutMapping("{id}")
     @Transactional
     public ResponseEntity<DetalhesHistorico> atualizar(@PathVariable("id") Long id,
-                                                     @RequestBody CadastroHistorico historicoPut){
+                                                     @RequestBody @Valid CadastroHistorico historicoPut){
         var historico = historicoRepository.getReferenceById(id);
         historico.atualizarDados(historicoPut);
         return ResponseEntity.ok(new DetalhesHistorico(historico));

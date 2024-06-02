@@ -1,7 +1,7 @@
 package br.com.marine.guard.model.Residuo;
 
 import br.com.marine.guard.dto.residuo.CadastroResiduo;
-import br.com.marine.guard.model.Perfil;
+import br.com.marine.guard.model.Usuario;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -26,31 +26,25 @@ public class Residuo {
     @Column(name = "ID_RESIDUO")
     private Long codigo;
 
-    @Column(name = "TIPO_PLASTICO", nullable = false)
+    @Column(name = "TIPO_PLASTICO", nullable = false, length = 50)
     @Enumerated(EnumType.STRING)
     private TipoPlastico tipoPlastico;
 
-    @Column(name = "NIVEL_RISCO", nullable = false)
+    @Column(name = "NIVEL_RISCO", nullable = false, length = 20)
     private String risco;
 
     @Column(name = "DT_ENVIO", nullable = false)
     private LocalDate dataEnvio;
 
     @ManyToOne
-    @JoinColumn(name = "residuosPerfil")
-    private Perfil perfil;
+    @JoinColumn(name = "residuos")
+    private Usuario usuario;
 
-    public Residuo(CadastroResiduo residuo){
+    public Residuo(CadastroResiduo residuo, Usuario usuario){
         tipoPlastico = residuo.tipoPlastico();
         risco = residuo.risco();
         dataEnvio = residuo.dataEnvio();
-    }
-    //DTO de detalhesResiduoPerfil
-    public Residuo(CadastroResiduo residuo, Perfil perfil){
-        tipoPlastico = residuo.tipoPlastico();
-        risco = residuo.risco();
-        dataEnvio = residuo.dataEnvio();
-        this.perfil = perfil;
+        this.usuario = usuario;
     }
 
     public void atualizarDados(CadastroResiduo atualizacao){

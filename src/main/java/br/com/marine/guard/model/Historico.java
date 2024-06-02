@@ -9,6 +9,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import java.time.DateTimeException;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 @Getter
@@ -26,28 +29,27 @@ public class Historico {
     @Column(name = "ID_HISTORICO")
     private Long codigo;
 
-    @Column(name = "TROCAS_DISPONIVEIS")
+    @Column(name = "TROCAS_DISPONIVEIS", nullable = false)
     private Integer disponivel;
 
-    @Column(name = "QTD_TROCA")
-    private Integer quantidadeTrocas; //Quantidade de pontos necessários para proxima troca
+    @Column(name = "DT_TROCA", nullable = false)
+    private LocalDate dataTroca;
 
-    @ManyToOne
-    @JoinColumn(name = "historicosPerfil")
-    private Perfil perfil;
+    @Column(name = "QTD_TROCA", nullable = false)
+    private Integer quantidadeTrocas; //Quantidade de pontos necessários para proxima troca
 
     @OneToMany(mappedBy = "historico")
     private List<PontoColeta> pontoColeta;
 
-    public Historico(CadastroHistorico historico){
+    @ManyToOne
+    @JoinColumn(name = "historicos")
+    private Usuario usuario;
+
+    public Historico(CadastroHistorico historico, Usuario usuario){
         disponivel = historico.disponivel();
         quantidadeTrocas = historico.quantidadeTrocas();
-    }
-    //DTO de detalhesHistoricoPerfil
-    public Historico(CadastroHistorico historico, Perfil perfil){
-        disponivel = historico.disponivel();
-        quantidadeTrocas = historico.quantidadeTrocas();
-        this.perfil = perfil;
+        dataTroca = historico.dataTroca();
+        this.usuario = usuario;
     }
 
     public void atualizarDados(CadastroHistorico atualizacao){
@@ -55,5 +57,7 @@ public class Historico {
             disponivel = atualizacao.disponivel();
         if(atualizacao.quantidadeTrocas() != null)
             quantidadeTrocas = atualizacao.quantidadeTrocas();
+        if(atualizacao.dataTroca() != null)
+            dataTroca = atualizacao.dataTroca();
     }
 }

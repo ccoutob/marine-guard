@@ -6,10 +6,10 @@ import br.com.marine.guard.model.Residuo.TipoPlastico;
 
 import java.time.LocalDate;
 
-public record DetalhesResiduo(Long id, TipoPlastico tipoPlastico, String risco, LocalDate dataEnvio) {
+public record DetalhesResiduo(Long id, TipoPlastico tipoPlastico, String risco, LocalDate dataEnvio, DetalhesUsuario usuario) {
 
     public DetalhesResiduo(Residuo residuo){
-        this(residuo.getCodigo(), residuo.getTipoPlastico(), residuo.getRisco(), residuo.getDataEnvio());
+        this(residuo.getCodigo(), residuo.getTipoPlastico(), residuo.getRisco(), residuo.getDataEnvio(), new DetalhesUsuario(residuo.getUsuario()));
     }
 
 }

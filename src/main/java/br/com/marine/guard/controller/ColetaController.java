@@ -56,7 +56,7 @@ public class ColetaController {
     @PutMapping("{id}")
     @Transactional
     public ResponseEntity<DetalhesColeta> atualizar(@PathVariable("id") Long id,
-                                                       @RequestBody CadastroColeta coletaPut){
+                                                       @RequestBody @Valid CadastroColeta coletaPut){
         var coleta = coletaRepository.getReferenceById(id);
         coleta.atualizarDados(coletaPut);
         return ResponseEntity.ok(new DetalhesColeta(coleta));

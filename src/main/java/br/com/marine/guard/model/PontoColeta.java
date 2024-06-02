@@ -25,16 +25,16 @@ public class PontoColeta {
     @Column(name = "ID_COLETA")
     private Long codigo;
 
-    @Column(name = "NM_COLETA", nullable = false)
+    @Column(name = "NM_COLETA", nullable = false, length = 255)
     private String nome;
 
-    @Column(name = "CEP_COLETA", nullable = false)
+    @Column(name = "CEP_COLETA", nullable = false, length = 9)
     private String cep;
 
-    @Column(name = "HR_ABERTURA")
+    @Column(name = "HR_ABERTURA", nullable = false)
     private LocalTime horarioAbertura; //"abertura": "09:00:00"
 
-    @Column(name = "HR_FECHAMENTO")
+    @Column(name = "HR_FECHAMENTO", nullable = false)
     private LocalTime horarioFechamento; //"fechamento": "18:00:00"
 
     @ManyToOne

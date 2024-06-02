@@ -2,10 +2,9 @@ package br.com.marine.guard.controller;
 
 import br.com.marine.guard.dto.residuo.CadastroResiduo;
 import br.com.marine.guard.dto.residuo.DetalhesResiduo;
-import br.com.marine.guard.dto.residuo.DetalhesResiduoPerfil;
 import br.com.marine.guard.model.Residuo.Residuo;
-import br.com.marine.guard.repository.PerfilRepository;
 import br.com.marine.guard.repository.ResiduoRepository;
+import br.com.marine.guard.repository.UsuarioRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -25,7 +24,7 @@ public class ResiduoController {
     private ResiduoRepository residuoRepository;
 
     @Autowired
-    private PerfilRepository perfilRepository;
+    private UsuarioRepository usuarioRepository;
 
     @GetMapping
     public ResponseEntity<List<DetalhesResiduo>> listar(Pageable pageable){
@@ -40,23 +39,23 @@ public class ResiduoController {
         return ResponseEntity.ok(new DetalhesResiduo(residuo));
     }
 
-    //Post da tabela Residuos para Perfil
-    @PostMapping("{id}/residuosPerfil")
+    //Post da tabela Residuos para Usuario
+    @PostMapping("{id}/residuosUsuario")
     @Transactional
-    public ResponseEntity<DetalhesResiduoPerfil> postResiduoPerfil(@PathVariable("id") Long id,
+    public ResponseEntity<DetalhesResiduo> postResiduoPerfil(@PathVariable("id") Long id,
                                                                         @RequestBody @Valid CadastroResiduo dto,
                                                                         UriComponentsBuilder uriBuilder){
-        var perfil = perfilRepository.getReferenceById(id);
-        var residuo = new Residuo(dto, perfil);
+        var usuario = usuarioRepository.getReferenceById(id);
+        var residuo = new Residuo(dto, usuario);
         residuoRepository.save(residuo);
-        var uri = uriBuilder.path("ResiduoPerfil/{id}").buildAndExpand(residuo.getCodigo()).toUri();
-        return ResponseEntity.created(uri).body(new DetalhesResiduoPerfil(residuo));
+        var uri = uriBuilder.path("residuosUsuario/{id}").buildAndExpand(residuo.getCodigo()).toUri();
+        return ResponseEntity.created(uri).body(new DetalhesResiduo(residuo));
     }
 
     @PutMapping("{id}")
     @Transactional
     public ResponseEntity<DetalhesResiduo> atualizar(@PathVariable("id") Long id,
-                                                         @RequestBody CadastroResiduo residuoPut){
+                                                         @RequestBody @Valid CadastroResiduo residuoPut){
         var residuo = residuoRepository.getReferenceById(id);
         residuo.atualizarDados(residuoPut);
         return ResponseEntity.ok(new DetalhesResiduo(residuo));

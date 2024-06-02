@@ -1,6 +1,11 @@
 package br.com.marine.guard.dto.historico;
 
-import br.com.marine.guard.model.brinde.TipoBrinde;
+import jakarta.validation.constraints.NotNull;
 
-public record CadastroHistorico(Integer disponivel, Integer quantidadeTrocas) {
+import java.time.LocalDate;
+import java.time.LocalTime;
+
+public record CadastroHistorico(@NotNull Integer disponivel,
+                                @NotNull LocalDate dataTroca,
+                                @NotNull Integer quantidadeTrocas) {
 }

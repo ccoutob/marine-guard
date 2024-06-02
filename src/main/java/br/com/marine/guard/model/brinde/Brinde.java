@@ -1,10 +1,7 @@
 package br.com.marine.guard.model.brinde;
 
 import br.com.marine.guard.dto.brinde.CadastroBrinde;
-import br.com.marine.guard.dto.historico.CadastroHistorico;
-import br.com.marine.guard.dto.perfil.CadastroPerfil;
-import br.com.marine.guard.model.Historico;
-import br.com.marine.guard.model.Perfil;
+import br.com.marine.guard.model.Usuario;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -27,21 +24,21 @@ public class Brinde {
     @Column(name = "ID_BRINDE")
     private Long codigo;
 
-    @Column(name = "NM_BRINDE", nullable = false)
+    @Column(name = "NM_BRINDE", nullable = false, length = 100)
     private String nome;
 
-    @Column(name = "TP_BRINDE", nullable = false)
+    @Column(name = "TP_BRINDE", nullable = false, length = 25)
     @Enumerated(EnumType.STRING)
     private TipoBrinde tipoBrinde;
 
     @ManyToOne
     @JoinColumn(name = "brindes")
-    private Perfil perfil;
+    private Usuario usuario;
 
-    public Brinde(CadastroBrinde brinde, Perfil perfil){
-        nome = brinde.nome();
-        tipoBrinde = brinde.tipoBrinde();
-        this.perfil = perfil;
+    public Brinde(CadastroBrinde cadastro, Usuario usuario){
+        nome = cadastro.nome();
+        tipoBrinde = cadastro.tipoBrinde();
+        this.usuario = usuario;
     }
 
     public void atualizarDados(CadastroBrinde atualizacao) {

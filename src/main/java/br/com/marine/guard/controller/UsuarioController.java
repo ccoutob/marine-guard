@@ -4,6 +4,7 @@ import br.com.marine.guard.dto.usuario.CadastroUsuario;
 import br.com.marine.guard.dto.usuario.DetalhesUsuario;
 import br.com.marine.guard.model.Usuario;
 import br.com.marine.guard.repository.UsuarioRepository;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -34,9 +35,9 @@ public class UsuarioController {
         return ResponseEntity.ok(new DetalhesUsuario(usuario));
     }
 
-    @PostMapping //Cadastrar um usuario incluindo o seu perfil
+    @PostMapping //Cadastrar um usuario
     @Transactional
-    public ResponseEntity<DetalhesUsuario> cadastrar(@RequestBody CadastroUsuario usuarioPost,
+    public ResponseEntity<DetalhesUsuario> cadastrar(@RequestBody @Valid CadastroUsuario usuarioPost,
                                                      UriComponentsBuilder uri){
         var usuario = new Usuario(usuarioPost);
         usuarioRepository.save(usuario);
@@ -47,7 +48,7 @@ public class UsuarioController {
     @PutMapping("{id}") //Atualizar um usuario, sem incluir o perfil
     @Transactional
     public ResponseEntity<DetalhesUsuario> atualizar(@PathVariable("id") Long id,
-                                                     @RequestBody CadastroUsuario usuarioPut){
+                                                     @RequestBody @Valid CadastroUsuario usuarioPut){
         var cliente = usuarioRepository.getReferenceById(id);
         cliente.atualizarDados(usuarioPut);
         return ResponseEntity.ok(new DetalhesUsuario(cliente));
