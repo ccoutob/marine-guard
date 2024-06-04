@@ -11,4 +11,7 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 
     @Query("from Usuario c where c.nome like %:nome%")
     Page<Usuario> buscarPorNome(@Param("nome") String nome, Pageable page);
+
+    @Query("from Usuario c where c.email like %:email%")
+    Page<Usuario> buscarPorEmail(@Param("email") String email, Pageable page);
 }

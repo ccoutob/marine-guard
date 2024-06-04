@@ -23,10 +23,17 @@ public class UsuarioController {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    //endpoint para pesquisar o cliente pelo nome
+    //endpoint para pesquisar o usuario pelo nome
     @GetMapping("por-nome")
-    public ResponseEntity<Page<DetalhesUsuario>> buscar(@RequestParam("nome")String nome, Pageable pageable){
+    public ResponseEntity<Page<DetalhesUsuario>> buscarNome(@RequestParam("nome")String nome, Pageable pageable){
         var lista = usuarioRepository.buscarPorNome(nome, pageable).map(DetalhesUsuario::new);
+        return ResponseEntity.ok(lista);
+    }
+
+    //endpoint para pesquisar o usuario pelo email
+    @GetMapping("por-email")
+    public ResponseEntity<Page<DetalhesUsuario>> buscarEmail(@RequestParam("email")String email, Pageable pageable){
+        var lista = usuarioRepository.buscarPorEmail(email, pageable).map(DetalhesUsuario::new);
         return ResponseEntity.ok(lista);
     }
 

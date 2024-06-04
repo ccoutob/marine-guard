@@ -2,11 +2,14 @@ package br.com.marine.guard.controller;
 
 import br.com.marine.guard.dto.brinde.CadastroBrinde;
 import br.com.marine.guard.dto.brinde.DetalhesBrinde;
+import br.com.marine.guard.dto.usuario.DetalhesUsuario;
 import br.com.marine.guard.model.brinde.Brinde;
+import br.com.marine.guard.model.brinde.TipoBrinde;
 import br.com.marine.guard.repository.BrindeRepository;
 import br.com.marine.guard.repository.UsuarioRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -25,6 +28,13 @@ public class BrindeController {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
+
+    @GetMapping("por-tipo-brinde")
+    public ResponseEntity<Page<Brinde>> buscarTipoBrinde(@RequestParam("tipoBrinde") TipoBrinde tipoBrinde, Pageable pageable) {
+        var lista = brindeRepository.buscarPorTipoBrinde(tipoBrinde, pageable);
+        return ResponseEntity.ok(lista);
+    }
+
 
     @GetMapping //Listar todos os brindes
     public ResponseEntity<List<DetalhesBrinde>> listar(Pageable pageable){

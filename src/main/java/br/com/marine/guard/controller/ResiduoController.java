@@ -7,6 +7,7 @@ import br.com.marine.guard.repository.ResiduoRepository;
 import br.com.marine.guard.repository.UsuarioRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RequestMapping("residuos")
@@ -25,6 +27,12 @@ public class ResiduoController {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
+
+    @GetMapping("por-data-envio")
+    public ResponseEntity<Page<Residuo>> buscarTipoBrinde(@RequestParam("dataEnvio") LocalDate dataEnvio, Pageable pageable) {
+        var lista = residuoRepository.buscarPorDataEnvio(dataEnvio, pageable);
+        return ResponseEntity.ok(lista);
+    }
 
     @GetMapping
     public ResponseEntity<List<DetalhesResiduo>> listar(Pageable pageable){
