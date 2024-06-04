@@ -7,6 +7,7 @@ import br.com.marine.guard.repository.HistoricoRepository;
 import br.com.marine.guard.repository.UsuarioRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -25,6 +26,12 @@ public class HistoricoController {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
+
+    @GetMapping("por-quantidade-troca")
+    public ResponseEntity<Page<Historico>> buscarPelaQuantidadeDeTrocas(@RequestParam("quantidadeTrocas") Integer quantidadeTrocas, Pageable pageable) {
+        var lista = historicoRepository.buscarPelaQuantidadeDeTrocas(quantidadeTrocas, pageable);
+        return ResponseEntity.ok(lista);
+    }
 
     @GetMapping
     public ResponseEntity<List<DetalhesHistorico>> listar(Pageable pageable){

@@ -3,11 +3,15 @@ package br.com.marine.guard.controller;
 import br.com.marine.guard.dto.coleta.CadastroColeta;
 import br.com.marine.guard.dto.coleta.DetalhesColeta;
 import br.com.marine.guard.dto.coleta.DetalhesColetaHistorico;
+import br.com.marine.guard.model.Historico;
 import br.com.marine.guard.model.PontoColeta;
+import br.com.marine.guard.model.brinde.Brinde;
+import br.com.marine.guard.model.brinde.TipoBrinde;
 import br.com.marine.guard.repository.ColetaRepository;
 import br.com.marine.guard.repository.HistoricoRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -26,6 +30,12 @@ public class ColetaController {
 
     @Autowired
     private ColetaRepository coletaRepository;
+
+    @GetMapping("por-cep")
+    public ResponseEntity<Page<PontoColeta>> buscarPorCep(@RequestParam("cep") String cep, Pageable pageable) {
+        var lista = coletaRepository.buscarPorCep(cep, pageable);
+        return ResponseEntity.ok(lista);
+    }
 
     @GetMapping
     public ResponseEntity<List<DetalhesColeta>> listar(Pageable pageable){
