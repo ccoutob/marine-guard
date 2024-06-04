@@ -6,6 +6,7 @@ import br.com.marine.guard.model.Usuario;
 import br.com.marine.guard.repository.UsuarioRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,6 +22,13 @@ public class UsuarioController {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
+
+    //endpoint para pesquisar o cliente pelo nome
+    @GetMapping("por-nome")
+    public ResponseEntity<Page<DetalhesUsuario>> buscar(@RequestParam("nome")String nome, Pageable pageable){
+        var lista = usuarioRepository.buscarPorNome(nome, pageable).map(DetalhesUsuario::new);
+        return ResponseEntity.ok(lista);
+    }
 
     @GetMapping //Listar todos os usuarios
     public ResponseEntity<List<DetalhesUsuario>> listar(Pageable pageable){

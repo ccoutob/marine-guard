@@ -19,10 +19,11 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "TB_RESIDUO")//Tabela do banco de dados
 @EntityListeners(AuditingEntityListener.class)
+@SequenceGenerator(name="seq_residuo", sequenceName="seq_tb_rg_residuo", allocationSize=1)
 public class Residuo {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seq_residuo")
     @Column(name = "ID_RESIDUO")
     private Long codigo;
 

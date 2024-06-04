@@ -17,10 +17,11 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Entity
 @Table(name = "TB_BRINDE")//Tabela do banco de dados
 @EntityListeners(AuditingEntityListener.class)
+@SequenceGenerator(name="seq_brinde", sequenceName="seq_tb_rg_brinde", allocationSize=1)
 public class Brinde {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seq_brinde")
     @Column(name = "ID_BRINDE")
     private Long codigo;
 

@@ -21,10 +21,11 @@ import java.util.List;
 @Entity
 @Table(name = "TB_USUARIO")//Tabela do banco de dados
 @EntityListeners(AuditingEntityListener.class)
+@SequenceGenerator(name="seq_usuario", sequenceName="seq_tb_rg_usuario", allocationSize=1)
 public class Usuario {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seq_usuario")
     @Column(name = "ID_USUARIO")
     private Long codigo;
 
