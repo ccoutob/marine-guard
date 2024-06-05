@@ -30,8 +30,8 @@ public class BrindeController {
     private UsuarioRepository usuarioRepository;
 
     @GetMapping("por-tipo-brinde")
-    public ResponseEntity<Page<Brinde>> buscarTipoBrinde(@RequestParam("tipoBrinde") TipoBrinde tipoBrinde, Pageable pageable) {
-        var lista = brindeRepository.buscarPorTipoBrinde(tipoBrinde, pageable);
+    public ResponseEntity<Page<DetalhesBrinde>> buscarTipoBrinde(@RequestParam("tipoBrinde") TipoBrinde tipoBrinde, Pageable pageable) {
+        var lista = brindeRepository.buscarPorTipoBrinde(tipoBrinde, pageable).map(DetalhesBrinde::new);;
         return ResponseEntity.ok(lista);
     }
 

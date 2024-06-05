@@ -1,5 +1,6 @@
 package br.com.marine.guard.controller;
 
+import br.com.marine.guard.dto.brinde.DetalhesBrinde;
 import br.com.marine.guard.dto.coleta.CadastroColeta;
 import br.com.marine.guard.dto.coleta.DetalhesColeta;
 import br.com.marine.guard.dto.coleta.DetalhesColetaHistorico;
@@ -32,8 +33,8 @@ public class ColetaController {
     private ColetaRepository coletaRepository;
 
     @GetMapping("por-cep")
-    public ResponseEntity<Page<PontoColeta>> buscarPorCep(@RequestParam("cep") String cep, Pageable pageable) {
-        var lista = coletaRepository.buscarPorCep(cep, pageable);
+    public ResponseEntity<Page<DetalhesColeta>> buscarPorCep(@RequestParam("cep") String cep, Pageable pageable) {
+        var lista = coletaRepository.buscarPorCep(cep, pageable).map(DetalhesColeta::new);;;
         return ResponseEntity.ok(lista);
     }
 

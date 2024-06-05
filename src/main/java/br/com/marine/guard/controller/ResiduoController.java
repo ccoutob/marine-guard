@@ -29,8 +29,8 @@ public class ResiduoController {
     private UsuarioRepository usuarioRepository;
 
     @GetMapping("por-data-envio")
-    public ResponseEntity<Page<Residuo>> buscarTipoBrinde(@RequestParam("dataEnvio") LocalDate dataEnvio, Pageable pageable) {
-        var lista = residuoRepository.buscarPorDataEnvio(dataEnvio, pageable);
+    public ResponseEntity<Page<DetalhesResiduo>> buscarTipoBrinde(@RequestParam("dataEnvio") LocalDate dataEnvio, Pageable pageable) {
+        var lista = residuoRepository.buscarPorDataEnvio(dataEnvio, pageable).map(DetalhesResiduo::new);;;
         return ResponseEntity.ok(lista);
     }
 

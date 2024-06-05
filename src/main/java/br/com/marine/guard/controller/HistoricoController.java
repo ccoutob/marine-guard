@@ -28,8 +28,8 @@ public class HistoricoController {
     private UsuarioRepository usuarioRepository;
 
     @GetMapping("por-quantidade-troca")
-    public ResponseEntity<Page<Historico>> buscarPelaQuantidadeDeTrocas(@RequestParam("quantidadeTrocas") Integer quantidadeTrocas, Pageable pageable) {
-        var lista = historicoRepository.buscarPelaQuantidadeDeTrocas(quantidadeTrocas, pageable);
+    public ResponseEntity<Page<DetalhesHistorico>> buscarPelaQuantidadeDeTrocas(@RequestParam("quantidadeTrocas") Integer quantidadeTrocas, Pageable pageable) {
+        var lista = historicoRepository.buscarPelaQuantidadeDeTrocas(quantidadeTrocas, pageable).map(DetalhesHistorico::new);;;
         return ResponseEntity.ok(lista);
     }
 
