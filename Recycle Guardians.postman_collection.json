@@ -1,0 +1,679 @@
+{
+	"info": {
+		"_postman_id": "c3e9f212-ccb2-4d95-92ad-c98026b9f39b",
+		"name": "Recycle Guardians",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29974256"
+	},
+	"item": [
+		{
+			"name": "Usuario",
+			"item": [
+				{
+					"name": "GET USUARIOS",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/usuario",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuario"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET USUARIO NOME",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/usuario/por-nome?nome=Couto",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuario",
+								"por-nome"
+							],
+							"query": [
+								{
+									"key": "nome",
+									"value": "Couto"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET USUARIO EMAIL",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/usuario/por-email?email=@gmail",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuario",
+								"por-email"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "@gmail"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST USUARIOS",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Pedro\",\r\n    \"email\": \"pedro@gmail.com\",\r\n    \"senha\": \"123321\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/usuario",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuario"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT USUARIOS",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Couto\",\r\n    \"email\": \"caua@gmail.com\",\r\n    \"senha\": \"123321\",\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/usuario/102",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuario",
+								"102"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE USUARIO",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/usuario/102",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuario",
+								"102"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Residuo",
+			"item": [
+				{
+					"name": "GET RESIDUO",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/residuos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"residuos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET RESIDUO POR DATA DE ENVIO",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/residuos/por-data-envio?dataEnvio=2024-02-20",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"residuos",
+								"por-data-envio"
+							],
+							"query": [
+								{
+									"key": "dataEnvio",
+									"value": "2024-02-20"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST RESIDUO TO USUARIO",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"tipoPlastico\": \"POLIETILENO\",\r\n    \"risco\": \"baixo\",\r\n    \"dataEnvio\": \"2024-02-20\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/residuos/102/residuosUsuario",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"residuos",
+								"102",
+								"residuosUsuario"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT PERFIL",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"tipoPlastico\": \"POLIETILENO\",\r\n    \"risco\": \"baixo\",\r\n    \"dataEnvio\": \"2024-02-20\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/residuos/52",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"residuos",
+								"52"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE PERFIL",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/residuos/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"residuos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Historico",
+			"item": [
+				{
+					"name": "GET HISTORICO",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/historico",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"historico"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET TOTAL TROCAS",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/historico/por-quantidade-troca?quantidadeTrocas=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"historico",
+								"por-quantidade-troca"
+							],
+							"query": [
+								{
+									"key": "quantidadeTrocas",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST HISTORICO TO USUARIO",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"disponivel\": 2,\r\n    \"dataTroca\": \"2024-05-05\",\r\n    \"quantidadeTrocas\": 50\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/historico/102/historicosUsuario",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"historico",
+								"102",
+								"historicosUsuario"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT HISTORICO",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"disponivel\": 2,\r\n    \"dataTroca\": \"2024-04-15\",\r\n    \"quantidadeTrocas\": 50\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/historico/202",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"historico",
+								"202"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE HISTORICO",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/historico/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"historico",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Brinde",
+			"item": [
+				{
+					"name": "GET BRINDE",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/brinde",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"brinde"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET POR TIPO DE BRINDE",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/brinde/por-tipo-brinde?tipoBrinde=INTERMEDIARIO",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"brinde",
+								"por-tipo-brinde"
+							],
+							"query": [
+								{
+									"key": "tipoBrinde",
+									"value": "INTERMEDIARIO"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST BRINDE TO USUARIO",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"TESTE\",\r\n    \"tipoBrinde\": \"BASICO\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/brinde/102/brindesUsuario",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"brinde",
+								"102",
+								"brindesUsuario"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT BRINDE",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Copo Stanley\",\r\n    \"tipoBrinde\": \"BASICO\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/brinde/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"brinde",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE BRINDE",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/brinde/id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"brinde",
+								"id"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Ponto Coleta",
+			"item": [
+				{
+					"name": "GET COLETA",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/coleta",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"coleta"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET POR CEP",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/coleta/por-cep?cep=01522010",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"coleta",
+								"por-cep"
+							],
+							"query": [
+								{
+									"key": "cep",
+									"value": "01522010"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST COLETA TO HISTORICO",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Ponto de Coleta Sé\",\r\n    \"cep\": \"01522010\",\r\n    \"horarioAbertura\": \"09:00:00\",\r\n    \"horarioFechamento\": \"18:00:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/coleta/202/coletaHistorico",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"coleta",
+								"202",
+								"coletaHistorico"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT COLETA",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Ponto de Coleta Sé\",\r\n    \"cep\": \"01522010\",\r\n    \"horarioAbertura\": \"09:00:00\",\r\n    \"horarioFechamento\": \"18:00:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/coleta/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"coleta",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE COLETA",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/coleta/id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"coleta",
+								"id"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
