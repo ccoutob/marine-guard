@@ -27,6 +27,9 @@ para ajudarem e procurarem se orientar perante o descarte inconsciênte de lixo
 ## 📋  Modelo Relacional das Entidades 
 ![Modelo Relacional](https://github.com/ccoutob/marine-guard/assets/126828978/4eafbb62-0962-4b62-bd7b-79f7044c76d3)
 ## 📋  Modelo Relacional das Entidades 
+![Logical](https://github.com/ccoutob/recycle-guardians/assets/126828978/3418d665-db61-4386-8c01-0b870a3c69c4)
+
+>Os Modelos de banco de dados foram fornecidos para atender os requisitos da matéria de Banco de dados
 
 <div>
 <h1 align="center"> 📦 Pacotes do Projeto </h1>
@@ -114,6 +117,8 @@ para ajudarem e procurarem se orientar perante o descarte inconsciênte de lixo
 | POST   | /coleta/&lt;id&gt;/coletaHistorico| Cadastrar uma coleta a um historico |
 | PUT    | /coleta/&lt;id&gt;                | Atualizar uma coleta                |
 | DELETE | /coleta/&lt;id&gt;                | Deletar uma coleta                  |
+
+❗❗ Acesse o arquivo de requisições do postman <a href="https://github.com/ccoutob/recycle-guardians/blob/main/Recycle%20Guardians.postman_collection.json">AQUI</a> ❗❗
 
 ### 🧑🏻‍💻 Autor 
 > Cauã Couto Basques - Turma 2TDSS
