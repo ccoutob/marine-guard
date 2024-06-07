@@ -120,5 +120,10 @@ para ajudarem e procurarem se orientar perante o descarte inconsciênte de lixo
 
 ❗❗ Acesse o arquivo de requisições do postman <a href="https://github.com/ccoutob/recycle-guardians/blob/main/Recycle%20Guardians.postman_collection.json">AQUI</a> ❗❗
 
+### ❗ ACESSO AOS VIDEOS PITCH E FUNCIONAL DA APLICAÇÂO ❗
+<a href="https://youtu.be/pSbbISFrGCI"> Vídeo Funcional do Sistema</a>
+<br>
+<a href="https://youtu.be/ItVAz1xHTu8"> Pitch do Projeto</a>
+
 ### 🧑🏻‍💻 Autor 
 > Cauã Couto Basques - Turma 2TDSS
