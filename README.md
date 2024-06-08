@@ -123,7 +123,7 @@ para ajudarem e procurarem se orientar perante o descarte inconsciênte de lixo
 ### ❗ ACESSO AOS VIDEOS PITCH E FUNCIONAL DA APLICAÇÂO ❗
 <a href="https://youtu.be/pSbbISFrGCI"> Vídeo Funcional do Sistema</a>
 <br>
-<a href="https://youtu.be/ItVAz1xHTu8"> Pitch do Projeto</a>
+<a href="https://youtu.be/EK7IvoCNhmI"> Pitch do Projeto</a>
 
 ### 🧑🏻‍💻 Autor 
 > Cauã Couto Basques - Turma 2TDSS
